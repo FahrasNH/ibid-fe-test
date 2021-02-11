@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from './QouteSection';","map":{"version":3,"sources":["/Users/fahrasnurhidayat/Documents/Fahras/Public/Portofolio/ibid-fe-test/components/molecules/QouteSection/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,gBAAxB","sourcesContent":["export { default } from './QouteSection'"]},"metadata":{},"sourceType":"module"}

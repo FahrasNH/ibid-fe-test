@@ -1,0 +1,40 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background-color: #FFF;
+  font-family: 'Work Sans', sans-serif;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+* {
+  clear: both;
+  box-sizing: border-box;
+}
+
+.hr-label {
+  &::before {
+    content: '';
+    width: 45%;
+    height: 1px;
+    right: 0.5em;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,0.2);
+  }
+  &::after {
+    content: '';
+    width: 45%;
+    height: 1px;
+    left: 0.5em;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,0.2);
+  }
+}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from './ResourceSection';","map":{"version":3,"sources":["/Users/fahrasnurhidayat/Documents/Fahras/Public/Portofolio/ibid-fe-test/components/molecules/ResourceSection/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,mBAAxB","sourcesContent":["export { default } from './ResourceSection'"]},"metadata":{},"sourceType":"module"}

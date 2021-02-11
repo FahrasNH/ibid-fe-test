@@ -1,0 +1,1 @@
+{"ast":null,"code":"export { default } from './Picture';","map":{"version":3,"sources":["/Users/fahrasnurhidayat/Documents/Fahras/Public/Portofolio/ibid-fe-test/components/atoms/Picture/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,WAAxB","sourcesContent":["export { default } from './Picture'"]},"metadata":{},"sourceType":"module"}
