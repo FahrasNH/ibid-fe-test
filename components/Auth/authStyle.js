@@ -23,25 +23,6 @@ export const Title = styled.p`
   font-family: 'Work Sans',
 `;
 
-export const LogoGoogle = styled.div`
-  width: 15%;
-  border: 1px solid #1B73E8;
-  justify-content: center;
-  background-color: #1B73E8;
-`;
-
-export const FaGoogle = styled.div`
-  color: #FFF;
-`;
-
-export const ButtonGoogle = styled.button`
-  width: 85%;
-  height: 36px;
-  align-items: center;
-  justify-content: center;
-  background-color: #1B73E8;
-`;
-
 export const Divider = styled.div`
   clear: both;
   display: flex;

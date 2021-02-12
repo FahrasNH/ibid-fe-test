@@ -2,12 +2,12 @@ import { apiPostAuth } from '../../utils/api'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { isEmpty, capitalize } from 'lodash'
+import GoogleLogin from 'react-google-login'
 import Link from 'next/link'
 import {
   Container, AuthCard,
-  Title, LogoGoogle,
-  ButtonGoogle, Divider,
-  FaGoogle, LinkAuth,
+  Title, Divider,
+  LinkAuth,
 } from './authStyle'
 
 const Auth = () => {
@@ -26,6 +26,25 @@ const Auth = () => {
       router.push('/')
     }
   }, [])
+
+  const responseGoogle = (response) => {
+    const data = {
+      account_id: response.profileObj.googleId,
+      type: 'google',
+      name: response.profileObj.name,
+      email: response.profileObj.email,
+      imageUrl: response.profileObj.imageUrl,
+    }
+
+    window.localStorage.setItem('isToken', response.accessToken)
+    window.localStorage.setItem('isProfile', JSON.stringify(data))
+
+    setSuccess({ status: true, message:'Berhasil masuk!' })
+    setTimeout(() => {
+      setSuccess({ status: true, message: '' })
+      router.push('/')
+    }, 2000)
+  }
 
   const onSubmit = async (event) => {
     event.preventDefault()
@@ -58,10 +77,14 @@ const Auth = () => {
         {
           router.pathname === '/login'
           ? <>
-            <div className="input-group">
-              <LogoGoogle className="input-group-text" id="basic-addon1"><FaGoogle className="fab fa-google"></FaGoogle></LogoGoogle>
-              <ButtonGoogle type="submit" className="btn btn-primary">Masuk dengan Google</ButtonGoogle>
-            </div>
+            <GoogleLogin
+              clientId="1036312684002-9r1ei9mim483alvglj88bovq1prufg1i.apps.googleusercontent.com"
+              buttonText="Masuk dengan Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              className="google-btn"
+              cookiePolicy={'single_host_origin'}
+            />
             <Divider className="hr-label">
               <span>atau</span>
             </Divider>

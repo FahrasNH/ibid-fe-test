@@ -16,6 +16,10 @@ body {
   clear: both;
   box-sizing: border-box; }
 
+.google-btn {
+  width: 100%;
+  justify-content: center; }
+
 .hr-label::before {
   content: '';
   width: 45%;
