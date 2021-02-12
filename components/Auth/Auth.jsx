@@ -16,7 +16,10 @@ const Auth = () => {
     email: '',
     password: '',
   })
-  const [isError, setError] = useState('')
+  const [isSuccess, setSuccess] = useState({
+    message: '',
+    status: null,
+  })
 
   useEffect(() => {
     if (!isEmpty(window.localStorage.getItem('isToken'))) {
@@ -31,13 +34,20 @@ const Auth = () => {
       const response = await apiPostAuth(`https://reqres.in/api${router.pathname}`, form)
 
       window.localStorage.setItem('isToken', response.data.token)
-      router.push('/')
+      if (response.status === 200) {
+        router.pathname === '/login' ? setSuccess({ status: true, message:'Berhasil masuk!' }) : setSuccess({ status: true, message: 'Berhasil daftar!' })
+        setTimeout(() => {
+          setSuccess({ status: true, message: '' })
+          router.push('/')
+        }, 2000)
+      }
     } catch (error) {
-      const err = !isEmpty(error.response) ? error.response.data.error : ''
-      setError(err)
-      setTimeout(() => {
-        setError('')
-      }, 5000)
+      if (error.response.status === 400) {
+        router.pathname === '/login' ? setSuccess({ status: false, message: 'Email atau Password salah!' }) : setSuccess({ status: false, message: 'Gagal mendaftar!' })
+        setTimeout(() => {
+          setSuccess({ status: false, message: '' })
+        }, 5000)
+      }
     } 
   }
 
@@ -81,9 +91,9 @@ const Auth = () => {
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               required/>
           </div>
-          { !isEmpty(isError) && (
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              {capitalize(isError)}
+          { !isEmpty(isSuccess.message) && (
+            <div className={`alert ${isSuccess.status ? 'alert-success' : 'alert-danger'} alert-dismissible fade show`} role="alert">
+              {capitalize(isSuccess.message)}
             </div>
           )}
           <div className="btn-group mb-3" role="group" aria-label="Basic example">
