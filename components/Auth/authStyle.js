@@ -20,7 +20,7 @@ export const AuthCard = styled.div`
 export const Title = styled.p`
   font-size: 24px;
   font-weight: 500;
-  font-family: 'Work Sans',
+  font-family: 'Work Sans', sans-serif;
 `;
 
 export const Divider = styled.div`

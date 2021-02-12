@@ -43,7 +43,7 @@ export default class extends Document {
   }
 
   get helmetJsx () {
-    const title = 'IBID'
+    const title = 'IBID | Fahras Nur Hidayat | Frontend Developer'
     return (
       <Helmet>
         <title>{title}</title>
