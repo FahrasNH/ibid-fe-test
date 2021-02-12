@@ -43,7 +43,7 @@ export default class extends Document {
   }
 
   get helmetJsx () {
-    const title = 'WeekendInc'
+    const title = 'IBID'
     return (
       <Helmet>
         <title>{title}</title>
