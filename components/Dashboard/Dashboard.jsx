@@ -22,12 +22,12 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		const bills = data.data.response.billdetails
-    if (isEmpty(window.localStorage.getItem('isToken'))) {
-      router.push('/login')
+		if (isEmpty(window.localStorage.getItem('isToken'))) {
+			router.push('/login')
+		} else {
+			setBilldetails(bills.filter(bill => bill.body.DENOM >= 100000))
+			setProfile(JSON.parse(window.localStorage.getItem('isProfile')))
 		}
-
-		setBilldetails(bills.filter(bill => bill.body.DENOM >= 100000))
-		setProfile(JSON.parse(window.localStorage.getItem('isProfile')))
 	}, [])
 
 	const handleLogout = () => {
@@ -41,7 +41,7 @@ const Dashboard = () => {
 		<Container className="container-sm">
 			<RowHeader className="row">
 				<ColProfile className="col-11">
-					<ImageProfile src={isProfile.imageUrl} alt={`${isProfile.type}-img`}/>
+					<ImageProfile src={isProfile.imageUrl} alt={`${isProfile.type || 'load'}-img`}/>
 					<div>
 						<TextName>{isProfile.name}</TextName>
 						<TextEmail>{isProfile.email}</TextEmail>
