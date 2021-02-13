@@ -54,13 +54,23 @@ const Auth = () => {
 
       window.localStorage.setItem('isToken', response.data.token)
       if (response.status === 200) {
+        const data = {
+          type: 'my-app',
+          name: (form.email || '').substring(0, form.email.lastIndexOf("@")),
+          email: form.email,
+          imageUrl: '',
+        }
+
         router.pathname === '/login' ? setSuccess({ status: true, message:'Berhasil masuk!' }) : setSuccess({ status: true, message: 'Berhasil daftar!' })
+
         setTimeout(() => {
           setSuccess({ status: true, message: '' })
+          window.localStorage.setItem('isProfile', JSON.stringify(data))
           router.push('/')
         }, 2000)
       }
     } catch (error) {
+      console.log(error)
       if (error.response.status === 400) {
         router.pathname === '/login' ? setSuccess({ status: false, message: 'Email atau Password salah!' }) : setSuccess({ status: false, message: 'Gagal mendaftar!' })
         setTimeout(() => {

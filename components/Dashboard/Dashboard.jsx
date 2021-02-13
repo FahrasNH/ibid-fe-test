@@ -41,7 +41,7 @@ const Dashboard = () => {
 		<Container className="container-sm">
 			<RowHeader className="row">
 				<ColProfile className="col-11">
-					<ImageProfile src={isProfile.imageUrl} alt={`${isProfile.type || 'load'}-img`}/>
+					<ImageProfile src={isProfile.imageUrl || require('../../assets/icons/ibid.png')} alt={`${isProfile.type || 'load'}-img`}/>
 					<div>
 						<TextName>{isProfile.name}</TextName>
 						<TextEmail>{isProfile.email}</TextEmail>
