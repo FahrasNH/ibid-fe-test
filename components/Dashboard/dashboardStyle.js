@@ -1,33 +1,58 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-	padding: 30px 0 0 0;
+  padding: 0;
 `;
 
 export const ImageProfile = styled.img`
-	width: 50px;
-	height: 50px;
-	margin-right: 20px;
-	border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 export const TextName = styled.p`
-	margin: 0;
-	font-size: 16px;
-	font-weight: 600;
-	font-family: 'Work Sans', sans-serif;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Work Sans', sans-serif;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 export const TextEmail = styled.p`
-	font-size: 14px;
-	font-weight: 400;
-	font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Work Sans', sans-serif;
+  @media (max-width: 768px) {
+    font-size: 9px;
+  }
 `;
+
+export const LogoutButton = styled.button`
+  float: right;
+  @media (max-width: 768px) {
+    width: 60px;
+    font-size: 12px;
+  }
+`
 
 export const ColProfile = styled.div`
-	display: flex;
+  display: flex;
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
 `;
 
-export const RowHeader = styled.div`
-	margin: 0 0 30px 0;
+export const Row = styled.div`
+  width: 100%;
+`;
+
+export const RowBill = styled.div`
+  padding: 20px 16px;
 `;

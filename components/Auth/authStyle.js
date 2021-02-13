@@ -15,6 +15,9 @@ export const AuthCard = styled.div`
   border-radius: 8px;
   background-color: #FFF;
   box-shadow: 10px 10px 45px #EAEAEA;
+  @media (max-width: 768px) {
+    box-shadow: unset;
+  }
 `;
 
 export const Title = styled.p`
