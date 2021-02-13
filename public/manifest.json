@@ -3,7 +3,7 @@
   "background_color": "#A3D062",
   "display": "standalone",
   "scope": "/",
-  "start_url": "/index.js",
+  "start_url": "/",
   "name": "IBID",
   "short_name": "IBID",
   "icons": [
