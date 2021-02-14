@@ -116,6 +116,7 @@ const Dashboard = ({
           </CardTable>
         </CardForm>
       
+        <p>Barikut ini adalah Output dari test No. 6</p>
         {filterBill.map((item, idx) => (
           <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
         ))}
