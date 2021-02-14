@@ -1,0 +1,1 @@
+{"ast":null,"code":"var METHOD = {\n  GET: 'get',\n  POST: 'post'\n};\nexport { METHOD };","map":null,"metadata":{},"sourceType":"module"}

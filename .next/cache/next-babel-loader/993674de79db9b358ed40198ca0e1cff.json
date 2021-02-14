@@ -1,0 +1,1 @@
+{"ast":null,"code":"import axios from 'axios';\nimport { METHOD } from './constant';\nexport const apiGetAuth = (URL, params) => axios({\n  url: URL,\n  method: METHOD.GET,\n  params\n});\nexport const apiPostAuth = (URL, data) => axios({\n  url: URL,\n  method: METHOD.POST,\n  data\n});","map":null,"metadata":{},"sourceType":"module"}

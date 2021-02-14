@@ -1,0 +1,1 @@
+{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport { Auth } from '../components';\nexport default function Login() {\n  return __jsx(Auth, null);\n}","map":null,"metadata":{},"sourceType":"module"}

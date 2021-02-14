@@ -84,9 +84,8 @@ const Auth = () => {
     <Container className="container-sm">
       <AuthCard>
         { router.pathname === '/login' ? <Title>Masuk</Title> : <Title>Daftar</Title> }
-        {
-          router.pathname === '/login'
-          ? <>
+        { router.pathname === '/login' && (
+          <>
             <GoogleLogin
               clientId="1036312684002-9r1ei9mim483alvglj88bovq1prufg1i.apps.googleusercontent.com"
               buttonText="Masuk dengan Google"
@@ -98,8 +97,8 @@ const Auth = () => {
             <Divider className="hr-label">
               <span>atau</span>
             </Divider>
-          </> : null
-        }
+          </>
+        )}
         <form onSubmit={onSubmit}>
           <div className="input-group mb-3">
             <input

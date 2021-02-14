@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <nav class="navbar navbar-expand-lg navbar-light mt-3">
+      <nav className="navbar navbar-expand-lg navbar-light mt-3">
         <Row className="row">
           <ColProfile className="col">
             <ImageProfile src={isProfile.imageUrl || require('../../assets/icons/ibid.png')} alt={`${isProfile.type || 'load'}-img`}/>
