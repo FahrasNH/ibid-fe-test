@@ -57,13 +57,20 @@ export const RowBill = styled.div`
   padding: 20px 16px;
 `;
 
-export const CardTable = styled.div`
+export const CardForm = styled.div`
   margin-bottom: 50px;
   position: relative;
   padding: 20px 50px;
   border-radius: 8px;
   background-color: #FFF;
   box-shadow: 10px 10px 45px #EAEAEA;
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+`;
+
+export const CardTable = styled.div`
+  overflow: scroll;
 `;
 
 export const IsLoad = styled.div`

@@ -3,7 +3,8 @@ import {
   TextName, TextEmail,
   ColProfile, Row,
   LogoutButton, RowBill,
-  IsLoad, CardTable,
+  IsLoad, CardForm,
+  CardTable,
 } from './dashboardStyle'
 
 const Dashboard = ({
@@ -43,7 +44,7 @@ const Dashboard = ({
       </nav>
       
       <RowBill>
-        <CardTable>
+        <CardForm>
           <form className="row" onSubmit={handleAddNewCar}>
             <div className="input-group mb-3 col">
               <input
@@ -76,37 +77,39 @@ const Dashboard = ({
             </div>
           </form>
 
-          {!form.isLoad ? (
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">No.</th>
-                  <th scope="col">Car</th>
-                  <th scope="col">Color</th>
-                  <th scope="col">Edit</th>
-                  <th scope="col">Delete</th>
-                </tr>
-              </thead>
-                <tbody>
-                  {dataDocs.map((doc, idx) => (
-                    <tr key={doc.id}>
-                      <th scope="row">{idx+1}</th>
-                      <td>{doc.car}</td>
-                      <td>{doc.color}</td>
-                      <td>Edit</td>
-                      <td style={{ cursor: "pointer" }} onClick={() => handleDeleteCar(doc.id)}>Delete</td>
-                    </tr>
-                  ))}
-                </tbody>
-            </table>
-          ) : (
-            <IsLoad>
-              <div className="spinner-grow text-secondary" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </IsLoad>
-          )}
-        </CardTable>
+          <CardTable>
+            {!form.isLoad ? (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Car</th>
+                    <th scope="col">Color</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                    {dataDocs.map((doc, idx) => (
+                      <tr key={doc.id}>
+                        <th scope="row">{idx+1}</th>
+                        <td>{doc.car}</td>
+                        <td>{doc.color}</td>
+                        <td>Edit</td>
+                        <td style={{ cursor: "pointer" }} onClick={() => handleDeleteCar(doc.id)}>Delete</td>
+                      </tr>
+                    ))}
+                  </tbody>
+              </table>
+            ) : (
+              <IsLoad>
+                <div className="spinner-grow text-secondary" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </IsLoad>
+            )}
+          </CardTable>
+        </CardForm>
       
         {filterBill.map((item, idx) => (
           <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
