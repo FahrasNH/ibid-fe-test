@@ -1,7 +1,3 @@
-import { useRouter } from 'next/router'
-import { useState, useEffect } from 'react'
-import { isEmpty } from 'lodash'
-import { data } from './test-6'
 import {
   Container, ImageProfile,
   TextName, TextEmail,
@@ -9,33 +5,12 @@ import {
   LogoutButton, RowBill,
 } from './dashboardStyle'
 
-const Dashboard = () => {
-  const router = useRouter()
-  const [billdetails, setBilldetails] = useState([])
-  const [isProfile, setProfile] = useState({
-    type: '',
-    name: '',
-    email: '',
-    imageUrl: '',
-    account_id: '',
-  })
-
-  useEffect(() => {
-    const bills = data.data.response.billdetails
-    if (isEmpty(window.localStorage.getItem('isToken'))) {
-      router.push('/login')
-    } else {
-      setBilldetails(bills.filter(bill => bill.body.DENOM >= 100000))
-      setProfile(JSON.parse(window.localStorage.getItem('isProfile')))
-    }
-  }, [])
-
-  const handleLogout = () => {
-    window.localStorage.removeItem('isToken')
-    window.localStorage.removeItem('isProfile')
-
-    router.push('/')
-  }
+const Dashboard = ({
+  handleLogout,
+  isProfile,
+  billdetails,
+}) => {
+  const filterBill = billdetails.filter(bill => bill.body.DENOM >= 100000)
 
   return (
     <Container>
@@ -54,11 +29,9 @@ const Dashboard = () => {
         </Row>
       </nav>
       <RowBill>
-        {
-          billdetails.map((item, idx) => (
-            <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
-          ))
-        }
+        {filterBill.map((item, idx) => (
+          <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
+        ))}
       </RowBill>
     </Container>
   )
