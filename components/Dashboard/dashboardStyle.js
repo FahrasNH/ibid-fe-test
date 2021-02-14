@@ -56,3 +56,19 @@ export const Row = styled.div`
 export const RowBill = styled.div`
   padding: 20px 16px;
 `;
+
+export const CardTable = styled.div`
+  margin-bottom: 50px;
+  position: relative;
+  padding: 20px 50px;
+  border-radius: 8px;
+  background-color: #FFF;
+  box-shadow: 10px 10px 45px #EAEAEA;
+`;
+
+export const IsLoad = styled.div`
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

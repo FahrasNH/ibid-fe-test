@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash"
+import { isEmpty, set } from "lodash"
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
 import { Dashboard } from "../components"
@@ -101,6 +101,12 @@ export default function Home() {
     }
   })
   const [isSnapshot, setSnapshot] = useState([])
+  const [form, setForm] = useState({
+    id: '',
+    car: '',
+    color: '',
+    isLoad: false,
+  })
 
   useEffect(() => {
     if (isEmpty(window.localStorage.getItem('isToken'))) {
@@ -112,7 +118,7 @@ export default function Home() {
         setSnapshot(snapshot)
       })
     }
-  }, [])
+  }, [isSnapshot])
 
   const handleLogout = () => {
     window.localStorage.removeItem('isToken')
@@ -121,12 +127,32 @@ export default function Home() {
     router.push('/login')
   }
 
+  const handleAddNewCar = (event) => {
+    event.preventDefault()
+
+    setForm({ ...form, isLoad: true, })
+    db.collection('cars').add(form).then(item => {
+      setForm({ car: '', color: '', isLoad: false, })
+    })
+  }
+
+  const handleDeleteCar = (id) => {
+    setForm({ ...form, isLoad: true, })
+    db.collection('cars').doc(id).delete().then(item => {
+      setForm({ ...form, isLoad: false, })
+    })
+  }
+
   return (
     <Dashboard
-      handleLogout={handleLogout}
+      form={form}
+      setForm={setForm}
       isProfile={isProfile}
-      billdetails={billdetails.data.response.billdetails}
       isSnapshot={isSnapshot}
+      handleLogout={handleLogout}
+      handleAddNewCar={handleAddNewCar}
+      handleDeleteCar={handleDeleteCar}
+      billdetails={billdetails.data.response.billdetails}
     />
   )
 }
