@@ -100,6 +100,7 @@ export default function Home() {
       }
     }
   })
+  const [isSnapshot, setSnapshot] = useState([])
 
   useEffect(() => {
     if (isEmpty(window.localStorage.getItem('isToken'))) {
@@ -108,9 +109,7 @@ export default function Home() {
       setProfile(JSON.parse(window.localStorage.getItem('isProfile')))
 
       db.collection('cars').get().then((snapshot) => {
-        snapshot.forEach(doc => {
-          console.log(doc.data())
-        })
+        setSnapshot(snapshot)
       })
     }
   }, [])
@@ -119,7 +118,7 @@ export default function Home() {
     window.localStorage.removeItem('isToken')
     window.localStorage.removeItem('isProfile')
 
-    router.push('/')
+    router.push('/login')
   }
 
   return (
@@ -127,6 +126,7 @@ export default function Home() {
       handleLogout={handleLogout}
       isProfile={isProfile}
       billdetails={billdetails.data.response.billdetails}
+      isSnapshot={isSnapshot}
     />
   )
 }

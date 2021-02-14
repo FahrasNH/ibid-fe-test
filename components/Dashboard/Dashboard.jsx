@@ -9,8 +9,12 @@ const Dashboard = ({
   handleLogout,
   isProfile,
   billdetails,
+  isSnapshot,
 }) => {
   const filterBill = billdetails.filter(bill => bill.body.DENOM >= 100000)
+  const dataDocs = []
+
+  isSnapshot.forEach(doc => dataDocs.push(doc.data()))
 
   return (
     <Container>
@@ -28,7 +32,29 @@ const Dashboard = ({
           </div>
         </Row>
       </nav>
+
       <RowBill>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Car</th>
+              <th scope="col">Color</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          {dataDocs.map((doc, idx) => (
+            <tr key={idx}>
+              <th scope="row">{idx+1}</th>
+              <td>{doc.car}</td>
+              <td>{doc.color}</td>
+              <td>Act</td>
+            </tr>
+          ))}
+          </tbody>
+        </table>
+      
         {filterBill.map((item, idx) => (
           <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
         ))}
