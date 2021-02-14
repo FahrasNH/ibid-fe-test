@@ -127,7 +127,7 @@ const Dashboard = ({
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="row" onSubmit={handleUpdateCar}>
+          <form className="row">
             <div className="input-group mb-3 col">
               <input
                 required
@@ -154,9 +154,6 @@ const Dashboard = ({
                 onChange={(e) => setForm({ ...form, color: e.target.value })}
               />
             </div>
-            <div className="btn-group mb-3 col-lg-1 col-xs-12" role="group" aria-label="Basic example">
-              <button type="submit" className="btn btn-primary">Update Car</button>
-            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
@@ -164,7 +161,7 @@ const Dashboard = ({
             Close
           </Button>
           <Button variant="primary" onClick={handleUpdateCar}>
-            Save Changes
+            Update Car
           </Button>
         </Modal.Footer>
       </Modal>

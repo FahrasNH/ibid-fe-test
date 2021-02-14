@@ -154,7 +154,10 @@ export default function Home() {
     event.preventDefault()
 
     setForm({ ...form, isLoad: true, })
-    db.collection('cars').add(form).then(() => {
+    db.collection('cars').add({
+      car: form.car,
+      color: form.color,
+    }).then(() => {
       setForm({ car: '', color: '', isLoad: false, })
     })
   }
@@ -169,7 +172,6 @@ export default function Home() {
   const handleUpdateCar = () => {
     setForm({ ...form, isLoad: true, })
     db.collection('cars').doc(form.id).update({
-      id: form.id,
       car: form.car,
       color: form.color,
     }).then(() => {
