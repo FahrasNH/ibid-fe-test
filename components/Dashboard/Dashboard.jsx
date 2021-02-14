@@ -1,3 +1,4 @@
+import { Modal, Button } from 'react-bootstrap'
 import {
   Container, ImageProfile,
   TextName, TextEmail,
@@ -8,14 +9,18 @@ import {
 } from './dashboardStyle'
 
 const Dashboard = ({
+  show,
   form,
   setForm,
   isProfile,
+  handleShow,
+  handleClose,
   isSnapshot,
   billdetails,
   handleLogout,
   handleAddNewCar,
   handleDeleteCar,
+  handleUpdateCar,
 }) => {
   const filterBill = billdetails.filter(bill => bill.body.DENOM >= 100000)
   const dataDocs = []
@@ -95,7 +100,7 @@ const Dashboard = ({
                         <th scope="row">{idx+1}</th>
                         <td>{doc.car}</td>
                         <td>{doc.color}</td>
-                        <td>Edit</td>
+                        <td onClick={() => handleShow(doc)}>Edit</td>
                         <td style={{ cursor: "pointer" }} onClick={() => handleDeleteCar(doc.id)}>Delete</td>
                       </tr>
                     ))}
@@ -115,6 +120,53 @@ const Dashboard = ({
           <p key={idx} style={{ padding: 0 }}>{`[${idx}]`}{` => `}{item.body.DENOM}</p>
         ))}
       </RowBill>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form className="row" onSubmit={handleUpdateCar}>
+            <div className="input-group mb-3 col">
+              <input
+                required
+                type="text"
+                maxLength={30}
+                aria-label="Car"
+                value={form.car}
+                placeholder="Input Car"
+                className="form-control"
+                aria-describedby="basic-addon1"
+                onChange={(e) => setForm({ ...form, car: e.target.value })}
+              />
+            </div>
+            <div className="input-group mb-3 col">
+              <input
+                required
+                type="text"
+                maxLength={30}
+                aria-label="Color"
+                value={form.color}
+                className="form-control"
+                placeholder="Input Color"
+                aria-describedby="basic-addon1"
+                onChange={(e) => setForm({ ...form, color: e.target.value })}
+              />
+            </div>
+            <div className="btn-group mb-3 col-lg-1 col-xs-12" role="group" aria-label="Basic example">
+              <button type="submit" className="btn btn-primary">Update Car</button>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleUpdateCar}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   )
 }

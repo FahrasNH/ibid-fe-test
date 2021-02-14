@@ -101,6 +101,7 @@ export default function Home() {
     }
   })
   const [isSnapshot, setSnapshot] = useState([])
+  const [show, setShow] = useState(false)
   const [form, setForm] = useState({
     id: '',
     car: '',
@@ -113,12 +114,34 @@ export default function Home() {
       router.push('/login')
     } else {
       setProfile(JSON.parse(window.localStorage.getItem('isProfile')))
-
-      db.collection('cars').get().then((snapshot) => {
-        setSnapshot(snapshot)
-      })
     }
-  }, [isSnapshot])
+  }, [])
+
+  db.collection('cars').get().then((snapshot) => {
+    setSnapshot(snapshot)
+  })
+
+  const handleShow = (doc) => {
+    setShow(true)
+
+    setForm({
+      ...form,
+      id: doc.id,
+      car: doc.car,
+      color: doc.color,
+    })
+  }
+
+  const handleClose = () => {
+    setShow(false)
+
+    setForm({
+      ...form,
+      id: '',
+      car: '',
+      color: '',
+    })
+  }
 
   const handleLogout = () => {
     window.localStorage.removeItem('isToken')
@@ -131,14 +154,27 @@ export default function Home() {
     event.preventDefault()
 
     setForm({ ...form, isLoad: true, })
-    db.collection('cars').add(form).then(item => {
+    db.collection('cars').add(form).then(() => {
       setForm({ car: '', color: '', isLoad: false, })
     })
   }
 
   const handleDeleteCar = (id) => {
     setForm({ ...form, isLoad: true, })
-    db.collection('cars').doc(id).delete().then(item => {
+    db.collection('cars').doc(id).delete().then(() => {
+      setForm({ ...form, isLoad: false, })
+    })
+  }
+
+  const handleUpdateCar = () => {
+    setForm({ ...form, isLoad: true, })
+    db.collection('cars').doc(form.id).update({
+      id: form.id,
+      car: form.car,
+      color: form.color,
+    }).then(() => {
+      setShow(false)
+
       setForm({ ...form, isLoad: false, })
     })
   }
@@ -146,12 +182,16 @@ export default function Home() {
   return (
     <Dashboard
       form={form}
+      show={show}
       setForm={setForm}
       isProfile={isProfile}
+      handleShow={handleShow}
       isSnapshot={isSnapshot}
+      handleClose={handleClose}
       handleLogout={handleLogout}
       handleAddNewCar={handleAddNewCar}
       handleDeleteCar={handleDeleteCar}
+      handleUpdateCar={handleUpdateCar}
       billdetails={billdetails.data.response.billdetails}
     />
   )
